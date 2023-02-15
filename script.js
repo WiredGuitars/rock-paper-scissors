@@ -1,43 +1,42 @@
-const options = ["rock", "paper", "scissors"]
+const options = ["rock","paper","scissors"]
 
-const ComputerSelection = getComputerChoice()
 
-function getComputerChoice(){
-    const computerChoice = options[Math.floor(Math.random() * options.length)]
-    return computerChoice
-}
-
-const UserSelection = getUserChoice()
-
-function getUserChoice(){
-    const userChoice = prompt("Choose your weapon: rock, paper, or scissors")
-    return userChoice
-}
-function playRound(UserSelection, ComputerSelection){
-
-}
-function checkWinner(){
-    if (UserSelection == ComputerSelection){
-        return "Tie";
+let playerScore = 0
+let computerScore = 0
+function game() {
+    for (let i = 0; i < 5; i++){
+        let computerMove = options[(Math.floor(Math.random() * 3))]
+        let playerMove = prompt("Select your weapon: Rock, Paper, or Scissors").toLowerCase()
+        while ((playerMove !== "rock" && playerMove !== "paper" && playerMove !== "scissors"))
+        {playerMove = prompt("Error, you can only use rock, paper, or scissors")}    
+    if (playerMove == computerMove){
+        console.log("Tie")
     }
-    else if(
-        (UserSelection == "rock" && ComputerSelection == "scissors") ||
-        (UserSelection == "paper" && ComputerSelection == "rock") ||
-        (UserSelection == "scissors" && ComputerSelection == "paper"))
-        {
-            return "You win!"
+    else if ((playerMove == "rock" && computerMove == "scissors") ||
+            (playerMove == "paper" && computerMove == "rock") ||
+            (playerMove == "scissors" && computerMove == "paper")) {
+        playerScore++
     }
-    else if(
-        (UserSelection == "rock" && ComputerSelection == "paper") ||
-        (UserSelection == "paper" && ComputerSelection == "scissors") ||
-        (UserSelection == "scissors" && ComputerSelection == "rock"))
-        {
-            return "You lose :("
-        }
+    else {
+        computerScore++
+    }
+    }
+    
+    if (playerScore == computerScore){
+        console.log(`Tie!
+        Your score is ${playerScore} 
+        Computer's score is ${computerScore}`)
+    }
+    else if (playerScore > computerScore){
+        console.log(`You Win!
+        Your score is ${playerScore}
+        Computer's score is ${computerScore}`)
+    }
+    else {
+        console.log(`You lose :(
+        Your score is ${playerScore}
+        Computer's score is ${computerScore}`)
+    }
+    
 }
-
-console.log(checkWinner())
-
-console.log(ComputerSelection)
-
-console.log(UserSelection)
+game()
